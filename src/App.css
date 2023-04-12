@@ -1,7 +1,7 @@
 .app-wrapper {
   margin: 0 auto;
   display: grid;
-  width: 1400px;
+  max-width: 1400px;
 
   grid-template-areas: 
   "h h"
@@ -10,30 +10,4 @@
   grid-template-rows: 80px 1fr;
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
-}
-
-.header {
-  grid-area: h;
-  background-color: aquamarine;
-}
-
-.header img {
-  width: 70px;
-  margin: 5px;
-}
-
-.nav {
-  grid-area: n;
-  background-color: darkcyan;
-
-  font-size: 1.5rem;
-}
-
-.content {
-  grid-area: c;
-  background-color: burlywood;
-}
-
-.img-hat {
-  width: 100%;
 }

@@ -1,0 +1,23 @@
+.nav {
+  grid-area: n;
+  background-color: darkcyan;
+
+  font-size: 1.5rem;
+}
+
+.item {
+  color: white;
+  margin: 10px 5%;
+  padding: 5px; 
+}
+
+.item:hover {
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 10px;
+}
+
+.item.active {
+  color: black;
+  background-color: rgba(255, 255, 255, .5);
+  border-radius: 10px;
+}

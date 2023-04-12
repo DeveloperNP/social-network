@@ -1,0 +1,37 @@
+.content {
+  grid-area: c;
+  background-color: lightsalmon;
+  font-size: 1.2rem;
+}
+
+.cover {
+  max-width: 100%;
+}
+
+.avatar {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border: 3px solid black;
+
+  float: left;
+  margin-left: 5px;
+  margin-right: 20px;
+}
+
+.description {
+  width: 90%;
+}
+
+.postsHeader {
+  clear: both;
+  margin: 5px;
+}
+
+.item {
+  color: white;
+  border: 1px dashed black;
+  width: 90%;
+  margin: 5px;
+  padding: 10px;
+}
