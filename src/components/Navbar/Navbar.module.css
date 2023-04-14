@@ -3,6 +3,9 @@
   background-color: darkcyan;
 
   font-size: 1.5rem;
+
+  position: sticky;
+  top: 90px;
 }
 
 .item {
