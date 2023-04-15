@@ -17,3 +17,9 @@ body {
 
   align-items: start;
 }
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: lightsalmon;
+  font-size: 1.2rem;
+}
