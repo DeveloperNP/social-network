@@ -9,8 +9,8 @@
 }
 
 .item {
-  color: white;
   margin: 10px 5%;
+  border-radius: 10px;
 }
 
 .nav .item a {
@@ -21,7 +21,7 @@
   text-decoration: none;
 }
 
-.item:hover {
+.item:hover .link {
   background-color: rgba(255, 255, 255, .3);
   border-radius: 10px;
 }
@@ -34,4 +34,5 @@
 
 .link {
   color: white;
+  border-radius: 10px;
 }

@@ -4,7 +4,6 @@
 }
 
 .newPost {
-  border: 1px solid green;
   display: flex;
   align-items: flex-end;
   gap: 10px;
