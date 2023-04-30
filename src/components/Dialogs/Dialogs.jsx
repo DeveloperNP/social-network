@@ -4,8 +4,8 @@ import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 
 const Dialogs = (props) => {
-  let dialogsElements = props.dialogs.map(d => <DialogItem id={d.id} name={d.name} />);
-  let messagesElements = props.messages.map(m => <MessageItem message={m.message} />);
+  let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id} name={d.name} />);
+  let messagesElements = props.state.messages.map(m => <MessageItem message={m.message} />);
 
   return (
     <div className={s.dialogsWrapper}>
