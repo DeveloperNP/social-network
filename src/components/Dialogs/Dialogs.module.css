@@ -7,6 +7,22 @@
   border-right: 5px solid rgba(255, 255, 255, .3);
 }
 
+.dialogItemWrapper {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  align-items: center;
+  justify-content: start;
+}
+
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border: 3px solid black;
+  border-radius: 40px;
+  margin-left: 5px;
+}
+
 .item {   
   margin: 5px;
   border-radius: 20px;

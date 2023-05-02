@@ -9,7 +9,7 @@ const ProfileInfo = () => {
       </div>
       <div className={s.descriptionBlock}>
         <div>
-          <img className={s.avatar} src="https://cs13.pikabu.ru/post_img/big/2020/05/01/9/1588345449281620118.jpg" alt="AVA" />
+          <img className={s.avatar} src="https://medialeaks.ru/wp-content/uploads/2019/08/2-33.jpg" alt="AVA" />
         </div>
         <div className={s.description}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus iste maiores error? Suscipit quo, maiores dolores quidem odit ducimus nulla voluptas atque. Asperiores atque veritatis aliquid magnam incidunt enim sint ut ex repellendus fugiat maxime, ad sunt rerum accusamus. Commodi nihil non similique laborum magnam possimus. Pariatur iure culpa atque?
