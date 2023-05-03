@@ -1,19 +1,9 @@
-.nav {
-  grid-area: n;
-  background-color: darkcyan;
-
-  font-size: 1.5rem;
-
-  position: sticky;
-  top: 90px;
-}
-
 .item {
   margin: 10px 5%;
   border-radius: 10px;
 }
 
-.nav .item a {
+.item a {
   display: block;
   box-sizing: border-box;
   padding: 5px;

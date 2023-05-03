@@ -10,7 +10,7 @@ body {
 
   grid-template-areas: 
   "h h"
-  "n c";
+  "s c";
 
   grid-template-rows: 80px 1fr;
   grid-template-columns: 2fr 10fr;
@@ -23,4 +23,6 @@ body {
   grid-area: c;
   background-color: lightsalmon;
   font-size: 1.2rem;
+
+  border-radius: 10px;
 }

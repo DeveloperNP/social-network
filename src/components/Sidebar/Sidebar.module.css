@@ -1,0 +1,8 @@
+.sidebarWrapper {
+  grid-area: s;
+  background-color: darkcyan;
+  font-size: 1.5rem;
+  position: sticky;
+  top: 90px;
+  border-radius: 10px;
+}
