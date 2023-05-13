@@ -54,6 +54,14 @@
   border-radius: 20px;
 }
 
+
+
+.messagesBlock {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 9fr 1fr;
+}
+
 .messages {
   display: flex;
   flex-direction: column;
@@ -67,4 +75,14 @@
   padding: 10px;
   background-color: rgba(255, 255, 255, .3);
   border-radius: 20px;
+}
+
+.newMessage {
+  max-height: 50px;
+  align-self: end;
+
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  gap: 10px;
+  margin: 10px;
 }
