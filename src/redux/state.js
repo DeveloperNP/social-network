@@ -80,4 +80,12 @@ export let addPost = (postMessage) => {
   state.profilePage.posts.push(newPost);
 }
 
+export let addMessage = (messageText) => {
+  let newMessage = {
+    id: 7,
+    message: messageText
+  };
+  state.dialogsPage.messages.push(newMessage);
+}
+
 export default state;
