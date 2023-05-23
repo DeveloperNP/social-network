@@ -54,7 +54,8 @@ let state = {
       { id: 4, message: 'The weather is cloudy today' },
       { id: 5, message: 'Let\'s play together!!!' },
       { id: 6, message: 'Good luck to everyone :)' }
-    ]
+    ],
+    newMessageText: ''
   },
   sidebar: {
     friends: [
@@ -74,8 +75,15 @@ let state = {
   }
 }
 
+window.state = state;
+
 export let updateNewPostText = (newPostText) => {
   state.profilePage.newPostText = newPostText;
+  rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newMessageText) => {
+  state.dialogsPage.newMessageText = newMessageText;
   rerenderEntireTree(state);
 }
 
@@ -90,12 +98,13 @@ export let addPost = () => {
   rerenderEntireTree(state);
 }
 
-export let addMessage = (messageText) => {
+export let addMessage = () => {
   let newMessage = {
     id: 7,
-    message: messageText
+    message: state.dialogsPage.newMessageText
   };
   state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessageText = '';
   rerenderEntireTree(state);
 }
 

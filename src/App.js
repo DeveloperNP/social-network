@@ -14,11 +14,21 @@ function App(props) {
     <BrowserRouter>
       <div className='app-wrapper'>
         <Header />
-        <Sidebar sidebarData={props.state.sidebar}/>
+        <Sidebar sidebarData={props.state.sidebar} />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/profile' element={<Profile pageData={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />} />
-            <Route path='/dialogs/*' element={<Dialogs pageData={props.state.dialogsPage} addMessage={props.addMessage} />} />
+            <Route path='/profile' element={
+              <Profile
+                pageData={props.state.profilePage}
+                addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText} />
+            } />
+            <Route path='/dialogs/*' element={
+              <Dialogs
+                pageData={props.state.dialogsPage}
+                addMessage={props.addMessage}
+                updateNewMessageText={props.updateNewMessageText} />
+            } />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
