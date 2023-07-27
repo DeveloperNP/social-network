@@ -8,16 +8,12 @@ const Dialogs = (props) => {
   let dialogsElements = props.pageData.dialogs.map(d => <DialogItem id={d.id} name={d.name} avatar={d.avatar} />);
   let messagesElements = props.pageData.messages.map(m => <MessageItem message={m.message} />);
 
-  let newMessageElement = React.createRef();
-
   let addMessage = () => {
-    // props.addMessage();
     props.dispatch(addMessageActionCreator());
   }
 
-  let newMessageChanged = () => {
-    let text = newMessageElement.current.value;
-    // props.updateNewMessageText(text);
+  let newMessageChanged = (e) => {
+    let text = e.target.value;
     let action = updateNewMessageTextActionCreator(text);
     props.dispatch(action);
   }
@@ -32,7 +28,11 @@ const Dialogs = (props) => {
           {messagesElements}
         </div>
         <div className={s.newMessage}>
-          <textarea ref={newMessageElement} onChange={newMessageChanged} value={props.pageData.newMessageText} />
+          <textarea
+            onChange={newMessageChanged}
+            value={props.pageData.newMessageText}
+            placeholder="Enter your message"
+          />
           <button onClick={addMessage}>Send message</button>
         </div>
       </div>
