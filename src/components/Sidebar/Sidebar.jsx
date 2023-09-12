@@ -7,7 +7,7 @@ const Sidebar = (props) => {
   return (
     <div className={s.sidebarWrapper}>
       <Navbar />
-      <Friendsbar friends={props.sidebarData.friends}/>
+      <Friendsbar friends={props.pageData.friends}/>
     </div>
   );
 }
