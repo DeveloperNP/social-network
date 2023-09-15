@@ -1,26 +1,13 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import StoreContext from "../../StoreContext";
+import { connect } from "react-redux";
 
-// const SidebarContainer = (props) => {
-//   let state = props.store.getState();
-  
-//   return (<Sidebar pageData={state.sidebar} />);
-// }
-
-const SidebarContainer = () => { 
-  return (
-    <StoreContext.Consumer>
-      {
-        (store) => {
-
-          let state = store.getState();
-
-          return <Sidebar pageData={state.sidebar} />
-        }
-      }
-    </StoreContext.Consumer>
-  );
+const mapStateToProps = (state) => {
+  return {
+    pageData: state.sidebar
+  }
 }
+
+const SidebarContainer = connect(mapStateToProps)(Sidebar);
 
 export default SidebarContainer;
