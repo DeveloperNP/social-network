@@ -3,7 +3,7 @@ import s from './Friendsbar.module.css'
 import FriendItem from "./FriendItem/FriendItem";
 
 const Friendsbar = (props) => {
-  let friendsElements = props.friends.map(f => <FriendItem name={f.name} avatar={f.avatar} />);
+  let friendsElements = props.friends.map(f => <FriendItem key={f.id} name={f.name} avatar={f.avatar} />);
 
   return (
     <div className={s.friendsbarWrapper}>
