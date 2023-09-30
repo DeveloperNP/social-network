@@ -1,5 +1,5 @@
 import React from "react";
-import s from './Users.module.css'
+import UserItem from "./UserItem/UserItem";
 
 const Users = (props) => {
   if (props.users.length === 0) {
@@ -22,40 +22,13 @@ const Users = (props) => {
       ]);
   }
   
-  return <div>
-    {
-      props.users.map(u => <div key={u.id}>
-        <span className={s.inlineBlock}>
-          <div>
-            <img src={u.avatar} alt='AVA' className={s.avatar} />
-          </div>
-          <div>
-            {
-              u.followed
-              ? <button onClick={ () => {props.unfollow(u.id)} }>Unfollow</button>
-              : <button onClick={ () => {props.follow(u.id)} }>Follow</button>
-            }
-          </div>
-        </span>
-        <span className={s.inlineBlock}>
-          <div>
-            {u.firstName}
-          </div>
-          <div>
-            {u.status}
-          </div>
-        </span>
-        <span className={s.inlineBlock}>
-          <div>
-            {u.location.country}
-          </div>
-          <div>
-          {u.location.city}
-          </div>
-        </span>
-      </div>)
-    }
-  </div>
+  let usersElements = props.users.map(u => <UserItem key={u.id} id={u.id} avatar={u.avatar} followed={u.followed} firstName={u.firstName} status={u.status} location={u.location} follow={props.follow} unfollow={props.unfollow} />);
+  
+  return (
+    <div>
+      {usersElements}
+    </div>
+  );
 }
 
 export default Users;
