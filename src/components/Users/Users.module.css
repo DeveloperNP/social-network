@@ -1,0 +1,10 @@
+.usersBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.showMoreButton {
+  font-size: 1.4rem;
+  margin: auto;
+  margin-bottom: 10px;
+}

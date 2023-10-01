@@ -1,8 +1,41 @@
-.avatar {
-  height: 75px;
+.userItemWrapper {
+  display: grid;
+  grid-template-columns: 1fr 7fr 2fr;
+  margin: 15px 20px;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+  background-color: rgba(255, 255, 255, .3);
 }
 
-.inlineBlock {
-  display: inline-block;
-  margin: 10px;
+.avaAndSubBlock {
+  margin: auto;
+}
+
+.userInfoBlock {
+  margin: 0 5px;
+}
+
+.locationBlock {
+  font-size: 1.3rem;
+}
+
+.avatar {
+  height: 80px;
+  border-radius: 40px;
+  width: 80px;
+}
+
+.subButton {
+  width: 100%;
+}
+
+.firstName {
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
+.status {
+  font-size: 1.3rem;
+  font-style: italic;
 }
