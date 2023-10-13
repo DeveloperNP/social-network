@@ -1,12 +1,13 @@
 import React from "react";
 import s from './UserItem.module.css'
+import userPhoto from '../../../assets/images/userPhoto.jpg'
 
 const UserItem = (props) => {
   return (
     <div className={s.userItemWrapper}>
       <div className={s.avaAndSubBlock}>
         <div>
-          <img src={props.avatar} alt='AVA' className={s.avatar} />
+          <img src={props.photos.small != null ? props.photos.small : userPhoto} alt='AVA' className={s.avatar} />
         </div>
         <div>
           {
@@ -18,7 +19,7 @@ const UserItem = (props) => {
       </div>
       <div className={s.userInfoBlock}>
         <div className={s.firstName}>
-          {props.firstName}
+          {props.name}
         </div>
         <div className={s.status}>
           {props.status}
@@ -26,10 +27,10 @@ const UserItem = (props) => {
       </div>
       <div className={s.locationBlock}>
         <div>
-          {props.location.country}
+          {'props.location.country'}
         </div>
         <div>
-          {props.location.city}
+          {'props.location.city'}
         </div>
       </div>
     </div>
