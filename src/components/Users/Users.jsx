@@ -4,13 +4,16 @@ import s from "./Users.module.css"
 import axios from 'axios'
 
 const Users = (props) => {
-  if (props.users.length === 0) {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
-      .then(response => {
-        props.setUsers(response.data.items);
-      });
-  }
   
+  let getUsers = () => {
+    if (props.users.length === 0) {
+      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        .then(response => {
+          props.setUsers(response.data.items);
+        });
+    }
+  }
+
   let usersElements = props.users.map(u =>
     <UserItem key={u.id} id={u.id} photos={u.photos} followed={u.followed} name={u.name}
               status={u.status} follow={props.follow} unfollow={props.unfollow} />);
@@ -19,8 +22,12 @@ const Users = (props) => {
     <div className={s.usersBlock}>
       <div>
         {usersElements}
-      </div>
-      <button className={s.showMoreButton}>Show more</button>
+      </div>      
+      {
+        props.users.length === 0
+          ? <button className={s.getUsersButton} onClick={getUsers}>Get Users</button>
+          : <button className={s.showMoreButton}>Show more</button>
+      }
     </div>
   );
 }
