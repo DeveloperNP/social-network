@@ -12,12 +12,14 @@ class Users extends React.Component {
   }
   
   render() {
+    let usersElements = this.props.users.map(u =>
+      <UserItem key={u.id} id={u.id} photos={u.photos} followed={u.followed} name={u.name}
+                status={u.status} follow={this.props.follow} unfollow={this.props.unfollow} />)
+    
     return (
       <div className={s.usersBlock}>
         <div>
-          {this.props.users.map(u =>
-            <UserItem key={u.id} id={u.id} photos={u.photos} followed={u.followed} name={u.name}
-                      status={u.status} follow={this.props.follow} unfollow={this.props.unfollow} />)}
+          {usersElements}
         </div>              
         <button className={s.showMoreButton}>Show more</button>
       </div>
