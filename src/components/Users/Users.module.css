@@ -10,3 +10,11 @@
   margin: auto;
   margin-bottom: 10px;
 }
+
+.usualPage {
+  font-style: normal;
+}
+
+.selectedPage {
+  font-weight: bold;
+}
