@@ -11,10 +11,46 @@
   margin-bottom: 10px;
 }
 
+.pagesBlock {
+  font-size: 1.4rem;
+  border-bottom: 5px solid rgba(255, 255, 255, .3);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 10px 0px;
+  margin: 10px 20px;
+}
+
 .usualPage {
   font-style: normal;
+  min-width: 60px;
+  min-height: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-top: 15px;
+  border-radius: 40px;
 }
 
 .selectedPage {
   font-weight: bold;
+  min-width: 60px;
+  min-height: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-top: 15px;
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 40px;
+}
+
+.usualPage:hover {
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 40px;
+}
+
+.selectedPage:hover {
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 40px;
 }

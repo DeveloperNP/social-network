@@ -34,11 +34,11 @@ class Users extends React.Component {
     
     return (
       <div className={s.usersBlock}>
-        <div>
+        <div className={s.pagesBlock}>
           {
             pages.map( p => {
-              return <span className={ this.props.currentPage === p ? s.selectedPage : s.usualPage }
-                     key={p} onClick={ (e) => {this.onPageChanged(p)} }>{p}</span>
+              return <div className={ this.props.currentPage === p ? s.selectedPage : s.usualPage }
+                     key={p} onClick={ (e) => {this.onPageChanged(p)} }>{p}</div>
             })
           }
         </div>
