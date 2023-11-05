@@ -1,13 +1,16 @@
 import React from "react";
 import s from './UserItem.module.css'
 import userPhoto from '../../../assets/images/userPhoto.jpg'
+import { NavLink } from "react-router-dom";
 
 const UserItem = (props) => {
   return (
     <div className={s.userItemWrapper}>
       <div className={s.avaAndSubBlock}>
         <div>
-          <img src={props.photos.small != null ? props.photos.small : userPhoto} alt='AVA' className={s.avatar} />
+          <NavLink to={`/profile/${props.id}`}>
+            <img src={props.photos.small != null ? props.photos.small : userPhoto} alt='AVA' className={s.avatar} />
+          </NavLink>
         </div>
         <div>
           {

@@ -1,7 +1,13 @@
-import React from "react";
+import React from 'react';
 import s from './ProfileInfo.module.css'
+import Preloader from '../../common/Preloader/Preloader';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+  
+  if(!props.profile) {
+    return <Preloader />
+  }
+  
   return (
     <div>
       <div>
@@ -9,7 +15,7 @@ const ProfileInfo = () => {
       </div>
       <div className={s.descriptionBlock}>
         <div>
-          <img className={s.avatar} src="./images/Nickolai_avatar.jpg" alt="AVA" />
+          <img className={s.avatar} src={props.profile.photos.large} alt="AVA" />
         </div>
         <div className={s.description}>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus iste maiores error? Suscipit quo, maiores dolores quidem odit ducimus nulla voluptas atque. Asperiores atque veritatis aliquid magnam incidunt enim sint ut ex repellendus fugiat maxime, ad sunt rerum accusamus. Commodi nihil non similique laborum magnam possimus. Pariatur iure culpa atque?
