@@ -1,24 +1,66 @@
-.cover {
-  max-width: 100%;
-}
+.profileInfoBlock {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
 
-.descriptionBlock {
+  margin: 15px 20px;
   padding: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,.5);
+  background-color: rgba(255, 255, 255, .3);
 }
 
 .avatar {
-  display: block;
-  width: 100px;
-  height: 100px;
+  width: 250px;
+  height: 250px;
   border: 3px solid black;
-  border-radius: 50px;
-
-  float: left;
-  margin-left: 5px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  border-radius: 125px;
 }
 
-.description {
-  width: 100%;
+.descriptionBlock {
+  max-width: 350px;
+}
+
+.fullName {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.aboutMe {
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.imgPlusTextBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.smallIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.lookingForAJobDescription {
+  font-style: italic;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.contactsHeader {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-style: italic;
+  align-self: center;
+}
+
+.linksBlock {
+  border-top: 2px solid black;
 }
