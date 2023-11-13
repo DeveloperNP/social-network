@@ -13,8 +13,27 @@
 
 .loginBlock {
   float: right;
+  font-size: 1.3rem;
 }
 
 .loginBlock a {
   color: white;
+}
+
+.authUserInfo { 
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.avatar {
+  width: 70px;
+  margin: 5px;
+  border-radius: 35px;
+}
+
+.loginButton {
+  padding: 25px;
 }

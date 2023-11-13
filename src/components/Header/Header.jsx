@@ -1,13 +1,33 @@
 import React from 'react';
 import s from './Header.module.css'
 import { NavLink } from 'react-router-dom';
+import userPhoto from '../../assets/images/userPhoto.jpg'
 
 const Header = (props) => {
+  
+  if (props.isAuth && !props.authUserProfile) {
+    return (
+      <header className={s.header}>
+        <img src='./logo512.png' />
+        <div className={s.loginBlock}>
+          <div className={s.loginButton}><NavLink to={'/login'}>Login</NavLink></div>
+        </div>
+      </header>
+    );
+  }
+  
   return (
     <header className={s.header}>
       <img src='./logo512.png' />
       <div className={s.loginBlock}>
-        { props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink> }        
+        { props.isAuth && props.authUserProfile
+            ? <div className={s.authUserInfo}>
+                <img src={props.authUserProfile.photos.small != null ? props.authUserProfile.photos.small : userPhoto} alt='AVA' className={s.avatar} />
+                <div>
+                  {props.authUserProfile.fullName}
+                </div>
+              </div> 
+            : <div className={s.loginButton}><NavLink to={'/login'}>Login</NavLink></div> }
       </div>
     </header>
   );
