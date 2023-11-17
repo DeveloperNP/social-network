@@ -14,3 +14,29 @@ export const usersAPI = {
       .then(response => response.data);
   }
 }
+
+export const authAPI = {
+  checkAuthUser () {
+    return instance.get('auth/me')
+      .then(response => response.data);
+  }
+}
+
+export const profileAPI = {
+  getUserProfile (userID) {
+    return instance.get(`profile/${userID}`)
+      .then(response => response.data);
+  }
+}
+
+export const followAPI = {
+  followUser (userID) {
+    return instance.post(`follow/${userID}`)
+      .then(response => response.data);
+  },
+
+  unfollowUser (userID) {
+    return instance.delete(`follow/${userID}`)
+      .then(response => response.data);
+  }
+}

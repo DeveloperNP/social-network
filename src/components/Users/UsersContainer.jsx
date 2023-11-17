@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios'
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { connect } from 'react-redux';
