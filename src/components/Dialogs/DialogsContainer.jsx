@@ -1,24 +1,13 @@
-import React from "react";
-import { addMessage, updateNewMessageText } from "../../redux/dialogs-reducer";
-import Dialogs from "./Dialogs";
-import { connect } from "react-redux";
+import { addMessage, updateNewMessageText } from '../../redux/dialogs-reducer';
+import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    pageData: state.dialogsPage
+    pageData: state.dialogsPage,
+    isAuth: state.auth.isAuth
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addMessage: () => {
-//       dispatch(addMessageActionCreator());
-//     },
-//     updateNewMessageText: (text) => {
-//       dispatch(updateNewMessageTextActionCreator(text));
-//     }
-//   }
-// }
 
 const DialogsContainer = connect(mapStateToProps, { addMessage, updateNewMessageText })(Dialogs);
 
