@@ -17,7 +17,7 @@
 }
 
 .loginBlock a {
-  color: white;
+  color:rgb(97, 218, 251);
 }
 
 .authUserInfo { 
@@ -25,7 +25,7 @@
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  color: white;
+  color:rgb(97, 218, 251);
 }
 
 .avatar {
@@ -36,4 +36,8 @@
 
 .loginButton {
   padding: 25px;
+}
+
+.logoutIcon {
+  max-width: 40px;
 }
