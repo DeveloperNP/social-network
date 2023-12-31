@@ -40,7 +40,7 @@ export const setAuthUserProfile = (authUserProfile) => ({type: SET_AUTH_USER_PRO
 
 
 export const checkAuthUser = () => (dispatch) => {
-  authAPI.checkAuthUser().then(data => {
+  return authAPI.checkAuthUser().then(data => {
     if(data.resultCode === 0) {          
       let {id, email, login} = data.data;
       dispatch(setAuthUserData(id, email, login, true));
