@@ -1,4 +1,4 @@
-import profileReducer, { addPost } from "./profile-reducer";
+import profileReducer, { addPost, deletePost } from "./profile-reducer";
 
 let state = {
   posts: [
@@ -31,4 +31,26 @@ test('new post message should be correct', () => {
 
   // 3. expectation
   expect(newState.posts[6].message).toBe('test message');
+});
+
+test('post should be deleted', () => {
+  // 1. test data
+  let action = deletePost(1);
+
+  // 2. some action
+  let newState = profileReducer(state, action);
+
+  // 3. expectation
+  expect(newState.posts.length).toBe(5);
+});
+
+test(`post shouldn't be deleted (incorrect id to delete)`, () => {
+  // 1. test data
+  let action = deletePost(1000);
+
+  // 2. some action
+  let newState = profileReducer(state, action);
+
+  // 3. expectation
+  expect(newState.posts.length).toBe(6);
 });
