@@ -1,8 +1,8 @@
 import { stopSubmit } from "redux-form";
 import { authAPI, profileAPI } from "../api/api";
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_AUTH_USER_PROFILE = 'SET_AUTH_USER_PROFILE';
+const SET_USER_DATA = 'social-network/auth/SET_USER_DATA';
+const SET_AUTH_USER_PROFILE = 'social-network/auth/SET_AUTH_USER_PROFILE';
 
 let initialState = {
   userID: null,

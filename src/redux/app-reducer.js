@@ -1,6 +1,6 @@
 import { checkAuthUser } from "./auth-reducer";
 
-const INIT_SUCCESS = 'INIT_SUCCESS';
+const INIT_SUCCESS = 'social-network/app/INIT_SUCCESS';
 
 let initialState = {
   initialized: false
