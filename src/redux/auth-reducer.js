@@ -39,39 +39,36 @@ export const setAuthUserProfile = (authUserProfile) => ({type: SET_AUTH_USER_PRO
 
 
 
-export const checkAuthUser = () => (dispatch) => {
-  return authAPI.checkAuthUser().then(data => {
-    if(data.resultCode === 0) {          
-      let {id, email, login} = data.data;
-      dispatch(setAuthUserData(id, email, login, true));
-    
-      profileAPI.getUserProfile(id)
-        .then(data => {                            
-          dispatch(setAuthUserProfile(data));
-        });
-    }
-  });
+export const checkAuthUser = () => async (dispatch) => {
+  let data = await authAPI.checkAuthUser();
+
+  if (data.resultCode === 0) {
+    let { id, email, login } = data.data;
+    dispatch(setAuthUserData(id, email, login, true));
+
+    let profileData = await profileAPI.getUserProfile(id);
+    dispatch(setAuthUserProfile(profileData));
+  }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI.login(email, password, rememberMe)
-    .then(data => {
-      if(data.resultCode === 0) {          
-        dispatch(checkAuthUser());
-      } else {
-        let message = data.messages.length > 0 ? data.messages[0] : 'Unknown Error';        
-        dispatch(stopSubmit('login', {_error: message}));
-      }
-    });
+export const login = (email, password, rememberMe) => async (dispatch) => {
+  let data = await authAPI.login(email, password, rememberMe);
+
+  if (data.resultCode === 0) {
+    dispatch(checkAuthUser());
+  } else {
+    let message = data.messages.length > 0 ? data.messages[0] : 'Unknown Error';
+    dispatch(stopSubmit('login', { _error: message }));
+  }
 }
 
-export const logout = () => (dispatch) => {
-  authAPI.logout().then(data => {
-    if(data.resultCode === 0) {          
-      dispatch(setAuthUserData(null, null, null, false));
-      dispatch(setAuthUserProfile(null));
-    }
-  });
+export const logout = () => async (dispatch) => {
+  let data = await authAPI.logout();
+
+  if (data.resultCode === 0) {
+    dispatch(setAuthUserData(null, null, null, false));
+    dispatch(setAuthUserProfile(null));
+  }
 }
 
 export default authReducer;
