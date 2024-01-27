@@ -1,4 +1,5 @@
 import { followAPI, usersAPI } from "../api/api";
+import { updateObjectInArray } from "../utils/object-helpers";
 
 const FOLLOW = 'social-network/users/FOLLOW';
 const UNFOLLOW = 'social-network/users/UNFOLLOW';
@@ -24,23 +25,13 @@ const usersReducer = (state = initialState, action) => {
     case FOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userID) {
-            return { ...u, followed: true }
-          }
-          return u;
-        })
+        users: updateObjectInArray(state.users, action.userID, 'id', { followed: true })
       };
     
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userID) {
-            return { ...u, followed: false }
-          }
-          return u;
-        })
+        users: updateObjectInArray(state.users, action.userID, 'id', { followed: false })
       }; 
 
     case SET_USERS:
@@ -107,27 +98,25 @@ export const requestUsers = (currentPage, pageSize) => {
   }
 }
 
+const followUnfollowFlow = async (dispatch, userID, apiMethod, actionCreator) => {
+  dispatch(toggleFollowingProgress(true, userID));
+    
+  let data = await apiMethod(userID);     
+  if (data.resultCode === 0) {
+    dispatch(actionCreator(userID));
+  }
+  dispatch(toggleFollowingProgress(false, userID));
+}
+
 export const followUser = (userID) => {
   return async (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userID));
-    
-    let data = await followAPI.followUser(userID);     
-    if (data.resultCode === 0) {
-      dispatch(setFollowed(userID));
-    }
-    dispatch(toggleFollowingProgress(false, userID));      
+    followUnfollowFlow(dispatch, userID, followAPI.followUser.bind(followAPI), setFollowed);     
   }
 }
 
 export const unfollowUser = (userID) => {
   return async (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userID));
-    
-    let data = await followAPI.unfollowUser(userID);
-    if (data.resultCode === 0) {
-      dispatch(setUnfollowed(userID));
-    }
-    dispatch(toggleFollowingProgress(false, userID));
+    followUnfollowFlow(dispatch, userID, followAPI.unfollowUser.bind(followAPI), setUnfollowed);
   }
 }
 
