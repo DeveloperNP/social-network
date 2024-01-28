@@ -1,8 +1,9 @@
 import React from "react";
 import UserItem from "./UserItem/UserItem";
 import s from "./Users.module.css"
+import Paginator from "../common/Paginator/Paginator";
 
-let Users = (props) => {
+let Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, ...props}) => {
 
   let usersElements = props.users.map(u =>
     <UserItem key={u.id}
@@ -15,24 +16,12 @@ let Users = (props) => {
               followUser={props.followUser}
               unfollowUser={props.unfollowUser}
     />)
-
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  let pages = [];
-  for(let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
   
   return (
     <div className={s.usersBlock}>
-      <div className={s.pagesBlock}>
-        {
-          pages.map( p => {
-            return <div className={ props.currentPage === p ? s.selectedPage : s.usualPage }
-                    key={p} onClick={ (e) => {props.onPageChanged(p)} }>{p}</div>
-          })
-        }
-      </div>
+      <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
+                 currentPage={currentPage} onPageChanged={onPageChanged}
+      />
       <div>
         {usersElements}
       </div>              
