@@ -11,17 +11,18 @@ class ProfileContainer extends React.Component {
     idIsNull: false
   }
 
-  componentDidMount() {        
-    let userID = this.props.router.params.userID;
+  componentDidMount() {     
+    const {router, authUserID, getUserProfile, getUserStatus} = this.props; 
+    let userID = router.params.userID;
     if (!userID) {
-      userID = this.props.authUserID;
+      userID = authUserID;
       if (!userID) {        
         this.setState({ idIsNull: true });
       }
     }
     
-    this.props.getUserProfile(userID);
-    this.props.getUserStatus(userID);
+    getUserProfile(userID);
+    getUserStatus(userID);
   }
   
   render () {    

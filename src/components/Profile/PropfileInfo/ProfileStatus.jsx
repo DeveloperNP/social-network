@@ -8,8 +8,9 @@ class ProfileStatus extends React.Component {
   }
   
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({ status: this.props.status });
+    const {status} = this.props;
+    if (prevProps.status !== status) {
+      this.setState({ status: status });
     }
   }
 
@@ -18,8 +19,9 @@ class ProfileStatus extends React.Component {
   }
   
   deactivateEditMode = () => {
+    const {updateUserStatus} = this.props;
     this.setState({ editMode: false });
-    this.props.updateUserStatus(this.state.status);
+    updateUserStatus(this.state.status);
   }
   
   onStatusChange = (e) => {
