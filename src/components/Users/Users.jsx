@@ -19,7 +19,7 @@ let Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, ...props}) 
   
   return (
     <div className={s.usersBlock}>
-      <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
+      <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize}
                  currentPage={currentPage} onPageChanged={onPageChanged}
       />
       <div>

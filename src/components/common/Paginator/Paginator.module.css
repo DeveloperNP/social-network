@@ -20,6 +20,11 @@
   border-radius: 40px;
 }
 
+.usualPage:hover {
+  background-color: rgba(255, 255, 255, .3);
+  border-radius: 40px;
+}
+
 .selectedPage {
   font-weight: bold;
   min-width: 60px;
@@ -32,7 +37,18 @@
   border-radius: 40px;
 }
 
-.usualPage:hover {
+.arrow {
+  font-style: italic;
+  min-width: 100px;
+  min-height: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-top: 15px;
+  border-radius: 40px;
+}
+
+.arrow:hover {
   background-color: rgba(255, 255, 255, .3);
   border-radius: 40px;
 }
