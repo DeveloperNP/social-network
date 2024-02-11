@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import SidebarContainer from './components/Sidebar/SidebarContainer';
 import News from './components/News/News';
@@ -30,8 +30,10 @@ class App extends React.Component {
       return <Preloader />
     }
     
+    // return <HashRouter> - for deploy on Github Pages
+    // return <BrowserRouter basename={process.env.PUBLIC_URL}> - for localhost
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className='app-wrapper'>
           <HeaderContainer />
           <SidebarContainer />
@@ -47,7 +49,7 @@ class App extends React.Component {
             </Routes>
           </div>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
