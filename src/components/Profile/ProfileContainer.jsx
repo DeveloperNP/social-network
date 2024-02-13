@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     idIsNull: false
   }
 
-  componentDidMount() {     
+  refreshProfile() {
     const {router, authUserID, getUserProfile, getUserStatus} = this.props; 
     let userID = router.params.userID;
     if (!userID) {
@@ -23,6 +23,16 @@ class ProfileContainer extends React.Component {
     
     getUserProfile(userID);
     getUserStatus(userID);
+  }
+
+  componentDidMount() {     
+    this.refreshProfile();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.router.params.userID !== prevProps.router.params.userID) {
+      this.refreshProfile();
+    }
   }
   
   render () {    
