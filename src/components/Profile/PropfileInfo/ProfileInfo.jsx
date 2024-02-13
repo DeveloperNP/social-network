@@ -26,10 +26,7 @@ const ProfileInfo = (props) => {
     <div className={s.profileInfoBlock}>
       
       <div>
-        {props.profile.photos.large
-          ? <img className={s.avatar} src={props.profile.photos.large} alt="AVA" />
-          : <img className={s.avatar} src={userPhoto} alt="AVA" />
-        }
+        <img className={s.avatar} src={props.profile.photos.large || userPhoto} alt="AVA" />
       </div>
 
       <div className={s.descriptionBlock}>
@@ -64,66 +61,42 @@ const ProfileInfo = (props) => {
         <div className={s.linksBlock}>         
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={mainLink} /> 
-            {props.profile.contacts.mainLink
-              ? <span>{props.profile.contacts.mainLink}</span>
-              : <span>-</span>
-            }
+            <span>{props.profile.contacts.mainLink || '-'}</span>
           </div>
         
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={website}/>
-            {props.profile.contacts.website
-              ? <span>{props.profile.contacts.website}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.website || '-'}</span>
           </div>
 
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={vk}/>
-            {props.profile.contacts.vk
-              ? <span>{props.profile.contacts.vk}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.vk || '-'}</span>
           </div>
 
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={twitter}/>
-            {props.profile.contacts.twitter
-              ? <span>{props.profile.contacts.twitter}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.twitter || '-'}</span>
           </div>
 
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={facebook}/>
-            {props.profile.contacts.facebook
-              ? <span>{props.profile.contacts.facebook}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.facebook || '-'}</span>
           </div>
 
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={instagram}/>
-            {props.profile.contacts.instagram
-              ? <span>{props.profile.contacts.instagram}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.instagram || '-'}</span>
           </div>
 
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={youtube}/>
-            {props.profile.contacts.youtube
-              ? <span>{props.profile.contacts.youtube}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.youtube || '-'}</span>
           </div>
 
           <div className={s.imgPlusTextBlock}>
             <img className={s.smallIcon} src={github}/>
-            {props.profile.contacts.github
-              ? <span>{props.profile.contacts.github}</span>
-              : <span>-</span>
-            } 
+            <span>{props.profile.contacts.github || '-'}</span>
           </div>
         </div>
       </div>

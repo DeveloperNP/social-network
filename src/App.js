@@ -33,7 +33,7 @@ class App extends React.Component {
     // return <HashRouter> - for deploy on Github Pages
     // return <BrowserRouter basename={process.env.PUBLIC_URL}> - for localhost
     return (
-      <HashRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <div className='app-wrapper'>
           <HeaderContainer />
           <SidebarContainer />
@@ -49,7 +49,7 @@ class App extends React.Component {
             </Routes>
           </div>
         </div>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
