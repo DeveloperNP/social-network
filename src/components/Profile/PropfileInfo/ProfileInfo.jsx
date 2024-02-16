@@ -18,6 +18,12 @@ import github from '../../../assets/images/github.png'
 
 const ProfileInfo = (props) => {
   
+  const onMainPhotoSelected = (e) => {
+    if(e.target.files.length) {
+      props.savePhoto(e.target.files[0]);
+    }
+  }
+
   if(!props.profile) {
     return <Preloader />
   }
@@ -25,8 +31,9 @@ const ProfileInfo = (props) => {
   return (
     <div className={s.profileInfoBlock}>
       
-      <div>
+      <div className={s.avatarBlock}>
         <img className={s.avatar} src={props.profile.photos.large || userPhoto} alt="AVA" />
+        {props.isOwner && <input type='file' onChange={onMainPhotoSelected} />}
       </div>
 
       <div className={s.descriptionBlock}>
