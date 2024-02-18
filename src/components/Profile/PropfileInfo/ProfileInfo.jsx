@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
@@ -18,6 +18,8 @@ import github from '../../../assets/images/github.png'
 
 const ProfileInfo = (props) => {
   
+  let [avatarFocused, setAvatarFocused] = useState(false);
+
   const onMainPhotoSelected = (e) => {
     if(e.target.files.length) {
       props.savePhoto(e.target.files[0]);
@@ -30,10 +32,14 @@ const ProfileInfo = (props) => {
   
   return (
     <div className={s.profileInfoBlock}>
-      
-      <div className={s.avatarBlock}>
-        <img className={s.avatar} src={props.profile.photos.large || userPhoto} alt="AVA" />
-        {props.isOwner && <input type='file' onChange={onMainPhotoSelected} />}
+
+      <div>
+        <div className={s.avatarBlock}
+             onMouseOver={() => { setAvatarFocused(true) }}
+             onMouseOut={() => { setAvatarFocused(false) }}>
+          <img className={s.avatar} src={props.profile.photos.large || userPhoto} alt="AVA" />
+          {props.isOwner && avatarFocused && <input type='file' onChange={onMainPhotoSelected} />}
+        </div>
       </div>
 
       <div className={s.descriptionBlock}>
