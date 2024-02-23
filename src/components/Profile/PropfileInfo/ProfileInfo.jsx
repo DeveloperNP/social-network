@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import s from './ProfileInfo.module.css'
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileDataForm from './ProfileDataForm';
 
 
 import userPhoto from '../../../assets/images/userPhoto.jpg'
@@ -17,7 +18,7 @@ import instagram from '../../../assets/images/instagram.png'
 import youtube from '../../../assets/images/youtube.png'
 import github from '../../../assets/images/github.png'
 
-const contacts = {
+export const contacts = {
   "mainLink": mainLink,
   "website": website,
   "vk": vk,
@@ -39,14 +40,56 @@ const ProfileItem = ({value, image}) => {
   return <Contact link={value} image={image} />
 }
 
-const ProfileInfo = ({profile, isOwner, savePhoto, status, updateUserStatus}) => {
+const ProfileData = ({profile, isOwner, status, updateUserStatus, setEditMode}) => {
+  return <>
+    <div className={s.descriptionBlock}>
+      <div className={s.fullName}>
+        {profile.fullName}
+      </div>
+      <div className={s.aboutMe}>
+        {profile.aboutMe}
+      </div>
+      <div>
+        <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus} />
+      </div>
+      <div>
+        {profile.lookingForAJob
+          ? <ProfileItem value={"I'm looking for a job"} image={magnifyingGlass} />
+          : <ProfileItem value={"I'm not looking for a job"} image={doNotDisturb} />
+        }
+      </div>
+      <div className={s.lookingForAJobDescription}>
+        {profile.lookingForAJobDescription}
+      </div>
+    </div>
+
+    <div className={s.contacts}>
+      <span className={s.contactsHeader}>Contacts:</span>
+      <div className={s.linksBlock}>
+        {Object.keys(profile.contacts).map(key => {
+          return <Contact link={profile.contacts[key]} image={contacts[key]} key={key} />
+        })}
+      </div>
+    </div>
+
+    {isOwner && <div><button onClick={setEditMode}>Edit</button></div>}
+  </>
+}
+
+const ProfileInfo = ({profile, isOwner, savePhoto, saveProfile, status, updateUserStatus}) => {
   
   let [avatarFocused, setAvatarFocused] = useState(false);
+  let [editMode, setEditMode] = useState(false);
 
   const onMainPhotoSelected = (e) => {
     if(e.target.files.length) {
       savePhoto(e.target.files[0]);
     }
+  }
+
+  const onSubmit = (formData) => {
+    saveProfile(formData)
+      .then(() => { setEditMode(false) })
   }
 
   if(!profile) {
@@ -65,36 +108,19 @@ const ProfileInfo = ({profile, isOwner, savePhoto, status, updateUserStatus}) =>
         </div>
       </div>
 
-      <div className={s.descriptionBlock}>
-        <div className={s.fullName}>
-          {profile.fullName}
-        </div>
-        <div className={s.aboutMe}>
-          {profile.aboutMe}
-        </div>
-        <div>
-          <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus} />
-        </div>
-        <div>
-          {profile.lookingForAJob
-            ? <ProfileItem value={"I'm looking for a job"} image={magnifyingGlass} />
-            : <ProfileItem value={"I'm not looking for a job"} image={doNotDisturb} />
-          }
-        </div>
-        <div className={s.lookingForAJobDescription}>
-          {profile.lookingForAJobDescription}
-        </div>
-      </div>
-
-      <div className={s.contacts}>
-        <span className={s.contactsHeader}>Contacts:</span>
-        <div className={s.linksBlock}>         
-          {Object.keys(profile.contacts).map(key => {
-            return <Contact link={profile.contacts[key]} image={contacts[key]} key={key} />
-          })}
-        </div>
-      </div>
-
+      {editMode
+        ? <ProfileDataForm initialValues={profile}
+                           profile={profile}                           
+                           onSubmit={onSubmit}
+                           status={status}
+                           updateUserStatus={updateUserStatus} />
+        : <ProfileData profile={profile}
+                       isOwner={isOwner}
+                       status={status}
+                       updateUserStatus={updateUserStatus}
+                       setEditMode={ () => { setEditMode(true) } } />
+      }
+      
     </div>
   )
 }

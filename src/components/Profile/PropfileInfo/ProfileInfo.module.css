@@ -50,6 +50,11 @@
   height: 30px;
 }
 
+.lookingForAJobBlock {
+  display: flex;
+  flex-direction: row;
+}
+
 .lookingForAJobDescription {
   font-style: italic;
 }
@@ -69,4 +74,17 @@
 
 .linksBlock {
   border-top: 2px solid black;
+}
+
+.formBlock {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.formSummaryError
+{
+  border: 1px solid red;
+  color: red;
 }

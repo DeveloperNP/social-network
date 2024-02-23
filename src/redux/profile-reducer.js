@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { profileAPI } from "../api/api";
 
 const ADD_POST = 'social-network/profile/ADD_POST';
@@ -106,6 +107,20 @@ export const savePhoto = (file) => {
 
     if (response.resultCode === 0) {
       dispatch(savePhotoSuccess(response.data.photos))      
+    }
+  }
+}
+
+export const saveProfile = (profile) => {
+  return async (dispatch, getState) => {
+    const userID = getState().auth.userID;
+    let response = await profileAPI.saveProfile(profile);
+
+    if (response.resultCode === 0) {
+      dispatch(getUserProfile(userID))
+    } else {
+      dispatch(stopSubmit('edit-profile', {_error: response.messages[0]}))
+      return Promise.reject(response.messages[0])
     }
   }
 }
