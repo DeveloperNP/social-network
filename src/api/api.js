@@ -21,9 +21,9 @@ export const authAPI = {
       .then(response => response.data);
   },
 
-  login(email, password, rememberMe = false) {
+  login(email, password, rememberMe = false, captcha = null) {
     return instance.post('auth/login', {
-      email, password, rememberMe
+      email, password, rememberMe, captcha
     }).then(response => response.data);
   },
 
@@ -74,6 +74,13 @@ export const followAPI = {
 
   unfollowUser(userID) {
     return instance.delete(`follow/${userID}`)
+      .then(response => response.data);
+  }
+}
+
+export const securityAPI = {
+  getCaptchaURL() {
+    return instance.get(`security/get-captcha-url`)
       .then(response => response.data);
   }
 }
