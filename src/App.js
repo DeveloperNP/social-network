@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { connect } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import './App.css';
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import SidebarContainer from './components/Sidebar/SidebarContainer';
 import News from './components/News/News';
@@ -39,6 +39,7 @@ class App extends React.Component {
           <SidebarContainer />
           <div className='app-wrapper-content'>
             <Routes>            
+              <Route exact path='/' element={<Navigate to={'/profile'} />} />            
               <Route path='/profile/:userID?' element={<ProfileContainerWithSuspense />} />            
               <Route path='/dialogs/*' element={<DialogsContainerWithSuspense />} />
               <Route path='/news' element={<News />} />
@@ -46,6 +47,7 @@ class App extends React.Component {
               <Route path='/settings' element={<Settings />} />
               <Route path='/users' element={<UsersContainer /> } />
               <Route path='/login' element={<LoginPage /> } />    
+              <Route path='*' element={<div>404 NOT FOUND</div> } />    
             </Routes>
           </div>
         </div>
