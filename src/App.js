@@ -20,9 +20,19 @@ const ProfileContainerWithSuspense = withSuspense(ProfileContainer);
 const DialogsContainerWithSuspense = withSuspense(DialogsContainer);
 
 class App extends React.Component {
+  catchAllUnhandledErrors(promiseRejectionEvent) {
+    alert(`ERROR\ntype: ${promiseRejectionEvent.type}, reason: ${promiseRejectionEvent.reason}`);
+  }
+  
   componentDidMount() {
     const {initializeApp} = this.props;
     initializeApp();
+
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
   
   render() {
