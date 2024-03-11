@@ -1,3 +1,5 @@
+import { reset } from "redux-form";
+
 const ADD_MESSAGE = 'social-network/dialogs/ADD_MESSAGE';
 
 let initialState = {
@@ -40,5 +42,12 @@ const dialogsReducer = (state = initialState, action) => {
 }
 
 export const addMessage = (newMessageText) => ({ type: ADD_MESSAGE, newMessageText });
+
+export const addMessageClearForm = (newMessageText) => {
+  return (dispatch) => {
+    dispatch(addMessage(newMessageText));
+    dispatch(reset('dialogAddMessageForm'));
+  }
+}
 
 export default dialogsReducer;

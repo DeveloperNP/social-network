@@ -1,4 +1,4 @@
-import { addPost } from "../../../redux/profile-reducer";
+import { addPostClearForm } from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import { connect } from "react-redux";
 
@@ -8,6 +8,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const MyPostsContainer = connect(mapStateToProps, { addPost })(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, { addPostClearForm })(MyPosts);
 
 export default MyPostsContainer;

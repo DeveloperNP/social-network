@@ -24,7 +24,7 @@ const Dialogs = (props) => {
   let messagesElements = props.pageData.messages.map(m => <MessageItem key={m.id} message={m.message} />);
 
   let addNewMessage = (formData) => {
-    props.addMessage(formData.newMessageText);
+    props.addMessageClearForm(formData.newMessageText);
   }
 
   return (

@@ -1,3 +1,8 @@
+.formControl textarea {
+  width: 100%;
+  resize: none;
+}
+
 .formControl.error input,
 .formControl.error textarea
 {
