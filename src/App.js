@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import { connect } from 'react-redux';
-import { initializeApp } from './redux/app-reducer';
+import { initializeApp } from './redux/app-reducer.ts';
 import './App.css';
 import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';

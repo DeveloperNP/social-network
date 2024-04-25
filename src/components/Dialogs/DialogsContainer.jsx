@@ -1,4 +1,4 @@
-import { addMessageClearForm } from '../../redux/dialogs-reducer';
+import { addMessageClearForm } from '../../redux/dialogs-reducer.ts';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';

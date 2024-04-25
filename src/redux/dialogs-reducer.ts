@@ -1,6 +1,9 @@
 import { reset } from "redux-form";
+import { DialogType, MessageType } from "../types/types";
 
 const ADD_MESSAGE = 'social-network/dialogs/ADD_MESSAGE';
+
+
 
 let initialState = {
   dialogs: [
@@ -12,7 +15,7 @@ let initialState = {
     { id: 6, name: 'Tania', avatar: "./images/Tania_avatar.jpg" },
     { id: 7, name: 'Julia', avatar: "./images/Julia_avatar.jpg" },
     { id: 8, name: 'Diana', avatar: "./images/Diana_avatar.jpg" }
-  ],
+  ] as Array<DialogType>,
   messages: [
     { id: 1, message: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus iste maiores error? Suscipit quo, maiores dolores quidem odit ducimus nulla voluptas atque.' },
     { id: 2, message: 'Hi, how are you?' },
@@ -20,10 +23,14 @@ let initialState = {
     { id: 4, message: 'The weather is cloudy today' },
     { id: 5, message: 'Let\'s play together!!!' },
     { id: 6, message: 'Good luck to everyone :)' }
-  ]
+  ] as Array<MessageType>
 };
 
-const dialogsReducer = (state = initialState, action) => {
+export type InitialStateType = typeof initialState;
+
+
+
+const dialogsReducer = (state = initialState, action: any): InitialStateType => {
 
   switch (action.type) {
     case ADD_MESSAGE:
@@ -41,10 +48,18 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const addMessage = (newMessageText) => ({ type: ADD_MESSAGE, newMessageText });
 
-export const addMessageClearForm = (newMessageText) => {
-  return (dispatch) => {
+
+type AddMessageActionType = {
+  type: typeof ADD_MESSAGE
+  newMessageText: string
+}
+export const addMessage = (newMessageText: string): AddMessageActionType => ({ type: ADD_MESSAGE, newMessageText });
+
+
+
+export const addMessageClearForm = (newMessageText: string) => {
+  return (dispatch: any) => {
     dispatch(addMessage(newMessageText));
     dispatch(reset('dialogAddMessageForm'));
   }
