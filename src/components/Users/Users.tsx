@@ -1,9 +1,21 @@
 import React from "react";
-import UserItem from "./UserItem/UserItem";
+import UserItem from "./UserItem/UserItem.tsx";
 import s from "./Users.module.css"
-import Paginator from "../common/Paginator/Paginator";
+import Paginator from "../common/Paginator/Paginator.tsx";
+import { UserType } from "../../types/types.ts";
 
-let Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, ...props}) => {
+type PropsType = {
+  totalUsersCount: number
+  pageSize: number
+  currentPage: number
+  onPageChanged: (pageNumber: number) => void
+  users: Array<UserType>
+  followingInProgress: Array<number>
+  followUser: (userID: number) => void
+  unfollowUser: (userID: number) => void
+}
+
+let Users = ({totalUsersCount, pageSize, currentPage, onPageChanged, ...props}: PropsType): React.JSX.Element => {
 
   let usersElements = props.users.map(u =>
     <UserItem key={u.id}

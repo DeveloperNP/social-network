@@ -2,8 +2,20 @@ import React from 'react';
 import s from './UserItem.module.css'
 import userPhoto from '../../../assets/images/userPhoto.jpg'
 import { NavLink } from 'react-router-dom';
+import { PhotosType } from '../../../types/types';
 
-const UserItem = (props) => {
+type PropsType = {
+  id: number
+  photos: PhotosType
+  followed: boolean
+  name: string
+  status: string | null
+  followingInProgress: Array<number>
+  followUser: (userID: number) => void
+  unfollowUser: (userID: number) => void
+}
+
+const UserItem = (props: PropsType): React.JSX.Element => {
   return (
     <div className={s.userItemWrapper}>
       <div className={s.avaAndSubBlock}>

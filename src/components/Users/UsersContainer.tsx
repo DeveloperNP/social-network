@@ -1,18 +1,34 @@
 import React from 'react';
-import Users from './Users';
-import Preloader from '../common/Preloader/Preloader';
+import Users from './Users.tsx';
+import Preloader from '../common/Preloader/Preloader.jsx';
 import { connect } from 'react-redux';
 import { setCurrentPage, requestUsers, followUser, unfollowUser } from '../../redux/users-reducer.ts';
 import { compose } from 'redux';
-import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors';
+import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors.ts';
+import { UserType } from '../../types/types.ts';
+import { AppStateType } from '../../redux/redux-store.ts';
 
-class UsersContainer extends React.Component {
+type PropsType = {
+  users: Array<UserType>
+  pageSize: number
+  totalUsersCount: number
+  currentPage: number
+  isFetching: boolean
+  followingInProgress: Array<number>
+
+  setCurrentPage: (currentPage: number) => void
+  requestUsers: (currentPage: number, pageSize: number) => void
+  followUser: (userID: number) => void
+  unfollowUser: (userID: number) => void
+}
+
+class UsersContainer extends React.Component<PropsType> {
   componentDidMount() {
     const {requestUsers, currentPage, pageSize} = this.props;
     requestUsers(currentPage, pageSize);
   }
   
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber: number) => {
     const {setCurrentPage, requestUsers, pageSize} = this.props;
     setCurrentPage(pageNumber);
     requestUsers(pageNumber, pageSize);
@@ -45,7 +61,7 @@ class UsersContainer extends React.Component {
 //   }
 // }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     users: getUsers(state),
     pageSize: getPageSize(state),
