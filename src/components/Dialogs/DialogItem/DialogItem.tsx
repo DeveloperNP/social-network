@@ -1,11 +1,16 @@
-import React from "react";
+import React from 'react'
 import s from './../Dialogs.module.css'
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
 
-const DialogItem = (props) => {
-  const path = `/dialogs/${props.id}`;
-  const avatar = props.avatar;
+type PropsType = {
+  id: number
+  avatar: string
+  name: string
+}
 
+const DialogItem = ({id, avatar, name}: PropsType): React.JSX.Element => {
+  const path = `/dialogs/${id}`
+  
   return (
     <div className={s.dialogItemWrapper}>
       <div>
@@ -13,11 +18,11 @@ const DialogItem = (props) => {
       </div>
       <div className={s.item}>
         <NavLink to={path} className={navData => navData.isActive ? s.activeDialog : s.dialog}>
-          {props.name}
+          {name}
         </NavLink>
       </div>
     </div>
-  );
+  )
 }
 
-export default DialogItem;
+export default DialogItem

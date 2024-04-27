@@ -14,7 +14,7 @@ import Preloader from './components/common/Preloader/Preloader';
 import { withSuspense } from './hoc/withSuspense';
 
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
-const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.tsx'));
 
 const ProfileContainerWithSuspense = withSuspense(ProfileContainer);
 const DialogsContainerWithSuspense = withSuspense(DialogsContainer);
