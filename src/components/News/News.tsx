@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import s from './News.module.css'
 
 const News = () => {
@@ -6,7 +6,7 @@ const News = () => {
     <div className={s.newsHeight}>
       News
     </div>
-  );
+  )
 }
 
-export default News;
+export default News

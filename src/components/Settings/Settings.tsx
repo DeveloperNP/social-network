@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import s from './Settings.module.css'
 
 const Settings = () => {
@@ -6,7 +6,7 @@ const Settings = () => {
     <div className={s.settingsHeight}>
       Settings
     </div>
-  );
+  )
 }
 
-export default Settings;
+export default Settings

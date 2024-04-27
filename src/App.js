@@ -6,9 +6,9 @@ import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router
 
 import HeaderContainer from './components/Header/HeaderContainer.tsx'
 import SidebarContainer from './components/Sidebar/SidebarContainer'
-import News from './components/News/News'
-import Music from './components/Music/Music'
-import Settings from './components/Settings/Settings'
+import News from './components/News/News.tsx'
+import Music from './components/Music/Music.tsx'
+import Settings from './components/Settings/Settings.tsx'
 import UsersContainer from './components/Users/UsersContainer.tsx'
 import LoginPage from './components/Login/Login'
 import Preloader from './components/common/Preloader/Preloader'
