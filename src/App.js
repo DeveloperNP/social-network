@@ -1,38 +1,39 @@
-import React, { lazy } from 'react';
-import { connect } from 'react-redux';
-import { initializeApp } from './redux/app-reducer.ts';
-import './App.css';
-import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-import HeaderContainer from './components/Header/HeaderContainer';
-import SidebarContainer from './components/Sidebar/SidebarContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
-import UsersContainer from './components/Users/UsersContainer.tsx';
-import LoginPage from './components/Login/Login';
-import Preloader from './components/common/Preloader/Preloader';
-import { withSuspense } from './hoc/withSuspense';
+import React, { lazy } from 'react'
+import { connect } from 'react-redux'
+import { initializeApp } from './redux/app-reducer.ts'
+import './App.css'
+import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
-const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.tsx'));
+import HeaderContainer from './components/Header/HeaderContainer.tsx'
+import SidebarContainer from './components/Sidebar/SidebarContainer'
+import News from './components/News/News'
+import Music from './components/Music/Music'
+import Settings from './components/Settings/Settings'
+import UsersContainer from './components/Users/UsersContainer.tsx'
+import LoginPage from './components/Login/Login'
+import Preloader from './components/common/Preloader/Preloader'
+import { withSuspense } from './hoc/withSuspense'
 
-const ProfileContainerWithSuspense = withSuspense(ProfileContainer);
-const DialogsContainerWithSuspense = withSuspense(DialogsContainer);
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.tsx'))
+
+const ProfileContainerWithSuspense = withSuspense(ProfileContainer)
+const DialogsContainerWithSuspense = withSuspense(DialogsContainer)
 
 class App extends React.Component {
   catchAllUnhandledErrors(promiseRejectionEvent) {
-    alert(`ERROR\ntype: ${promiseRejectionEvent.type}, reason: ${promiseRejectionEvent.reason}`);
+    alert(`ERROR\ntype: ${promiseRejectionEvent.type}, reason: ${promiseRejectionEvent.reason}`)
   }
   
   componentDidMount() {
-    const {initializeApp} = this.props;
-    initializeApp();
+    const {initializeApp} = this.props
+    initializeApp()
 
-    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
   }
   
   render() {
@@ -62,7 +63,7 @@ class App extends React.Component {
           </div>
         </div>
       </BrowserRouter>
-    );
+    )
   }
 }
 
@@ -70,4 +71,4 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default connect(mapStateToProps, { initializeApp })(App)
