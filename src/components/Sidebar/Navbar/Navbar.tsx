@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import s from './Navbar.module.css'
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = (): React.JSX.Element => {
   return (
     <nav>
       <div className={s.item}>
@@ -36,7 +36,7 @@ const Navbar = () => {
         </NavLink>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -5,7 +5,7 @@ import './App.css'
 import { BrowserRouter, HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import HeaderContainer from './components/Header/HeaderContainer.tsx'
-import SidebarContainer from './components/Sidebar/SidebarContainer'
+import SidebarContainer from './components/Sidebar/SidebarContainer.tsx'
 import News from './components/News/News.tsx'
 import Music from './components/Music/Music.tsx'
 import Settings from './components/Settings/Settings.tsx'
