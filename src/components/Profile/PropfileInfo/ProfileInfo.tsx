@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react'
 import s from './ProfileInfo.module.css'
-import Preloader from '../../common/Preloader/Preloader'
+import Preloader from '../../common/Preloader/Preloader.tsx'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks.tsx'
 import ProfileDataForm from './ProfileDataForm'
 

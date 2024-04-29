@@ -11,7 +11,7 @@ import Music from './components/Music/Music.tsx'
 import Settings from './components/Settings/Settings.tsx'
 import UsersContainer from './components/Users/UsersContainer.tsx'
 import LoginPage from './components/Login/Login'
-import Preloader from './components/common/Preloader/Preloader'
+import Preloader from './components/common/Preloader/Preloader.tsx'
 import { withSuspense } from './hoc/withSuspense'
 
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer.tsx'))

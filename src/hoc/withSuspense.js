@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import Preloader from '../components/common/Preloader/Preloader';
+import Preloader from '../components/common/Preloader/Preloader.tsx';
 
 export const withSuspense = (Component) => {
   return (props) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Users from './Users.tsx';
-import Preloader from '../common/Preloader/Preloader.jsx';
+import Preloader from '../common/Preloader/Preloader.tsx';
 import { connect } from 'react-redux';
 import { setCurrentPage, requestUsers, followUser, unfollowUser } from '../../redux/users-reducer.ts';
 import { compose } from 'redux';
