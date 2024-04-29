@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import s from './ProfileInfo.module.css'
-import { reduxForm } from 'redux-form';
-import { Input, createField } from '../../common/FormsControls/FormsControls';
-import { contacts } from './ProfileInfo';
+import { reduxForm } from 'redux-form'
+import { Input, createField } from '../../common/FormsControls/FormsControls.js'
+import { contacts } from './ProfileInfo.tsx'
 
 const ProfileDataForm = ({handleSubmit, profile, error}) => {
   return <form onSubmit={ handleSubmit } className={s.formBlock}>
@@ -48,6 +48,6 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 const ProfileDataFormReduxForm = reduxForm({
   form: 'edit-profile',
   enableReinitialize: true,
-  destroyOnUnmount: false})(ProfileDataForm);
+  destroyOnUnmount: false})(ProfileDataForm)
 
-export default ProfileDataFormReduxForm;
+export default ProfileDataFormReduxForm

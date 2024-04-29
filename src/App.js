@@ -14,7 +14,7 @@ import LoginPage from './components/Login/Login'
 import Preloader from './components/common/Preloader/Preloader'
 import { withSuspense } from './hoc/withSuspense'
 
-const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'))
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer.tsx'))
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.tsx'))
 
 const ProfileContainerWithSuspense = withSuspense(ProfileContainer)
