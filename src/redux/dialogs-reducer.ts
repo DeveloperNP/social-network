@@ -1,7 +1,9 @@
-import { reset } from "redux-form";
-import { DialogType, MessageType } from "../types/types";
+import { reset } from 'redux-form'
+import { DialogType, MessageType } from '../types/types'
+import { ThunkAction } from '@reduxjs/toolkit'
+import { AppStateType } from './redux-store'
 
-const ADD_MESSAGE = 'social-network/dialogs/ADD_MESSAGE';
+const ADD_MESSAGE = 'social-network/dialogs/ADD_MESSAGE'
 
 
 
@@ -24,27 +26,27 @@ let initialState = {
     { id: 5, message: 'Let\'s play together!!!' },
     { id: 6, message: 'Good luck to everyone :)' }
   ] as Array<MessageType>
-};
+}
 
-export type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState
 
 
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: AddMessageActionType): InitialStateType => {
 
   switch (action.type) {
     case ADD_MESSAGE:
       let newMessage = {
         id: 7,
         message: action.newMessageText
-      };
+      }
       return {
         ...state,
         messages: [...state.messages, newMessage]
-      };
+      }
 
     default:
-      return state;
+      return state
   }
 }
 
@@ -54,15 +56,16 @@ type AddMessageActionType = {
   type: typeof ADD_MESSAGE
   newMessageText: string
 }
-export const addMessage = (newMessageText: string): AddMessageActionType => ({ type: ADD_MESSAGE, newMessageText });
+export const addMessage = (newMessageText: string): AddMessageActionType => ({ type: ADD_MESSAGE, newMessageText })
 
 
 
-export const addMessageClearForm = (newMessageText: string) => {
-  return (dispatch: any) => {
-    dispatch(addMessage(newMessageText));
-    dispatch(reset('dialogAddMessageForm'));
+export const addMessageClearForm = (newMessageText: string): ThunkAction<void, AppStateType, unknown, AddMessageActionType> => {
+  return (dispatch) => {
+    dispatch(addMessage(newMessageText))
+    // @ts-ignore
+    dispatch(reset('dialogAddMessageForm'))
   }
 }
 
-export default dialogsReducer;
+export default dialogsReducer

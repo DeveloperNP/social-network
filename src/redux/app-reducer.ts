@@ -1,6 +1,8 @@
-import { checkAuthUser } from "./auth-reducer.ts";
+import { ThunkAction } from '@reduxjs/toolkit'
+import { checkAuthUser } from './auth-reducer.ts'
+import { AppStateType } from './redux-store.ts'
 
-const INIT_SUCCESS = 'social-network/app/INIT_SUCCESS';
+const INIT_SUCCESS = 'social-network/app/INIT_SUCCESS'
 
 export type InitialStateType = {
   initialized: boolean
@@ -8,9 +10,9 @@ export type InitialStateType = {
 
 let initialState: InitialStateType = {
   initialized: false
-};
+}
 
-const appReducer = (state = initialState, action: any): InitialStateType => {
+const appReducer = (state = initialState, action: InitSuccessActionType): InitialStateType => {
   
   switch (action.type) {
    
@@ -18,25 +20,27 @@ const appReducer = (state = initialState, action: any): InitialStateType => {
       return {
         ...state,
         initialized: true
-      };
+      }
     
     default:
-      return state;
+      return state
   }
 }
 
 type InitSuccessActionType = {
   type: typeof INIT_SUCCESS
 }
-const initSuccess = (): InitSuccessActionType => ({ type: INIT_SUCCESS });
+const initSuccess = (): InitSuccessActionType => ({ type: INIT_SUCCESS })
 
-export const initializeApp = () => (dispatch: any) => {
-  let promise = dispatch(checkAuthUser());
+
+
+export const initializeApp = (): ThunkAction<void, AppStateType, unknown, InitSuccessActionType> => (dispatch) => {
+  let promise = dispatch(checkAuthUser())
 
   promise.then( () => {
-    dispatch(initSuccess());
-  });
+    dispatch(initSuccess())
+  })
 }
 
 
-export default appReducer;
+export default appReducer

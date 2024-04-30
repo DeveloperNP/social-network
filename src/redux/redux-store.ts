@@ -1,11 +1,11 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import profileReducer from "./profile-reducer.ts";
-import dialogsReducer from "./dialogs-reducer.ts";
-import sidebarReducer from "./sidebar-reducer.ts";
-import usersReducer from "./users-reducer.ts";
-import authReducer from "./auth-reducer.ts";
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import profileReducer from './profile-reducer.ts'
+import dialogsReducer from './dialogs-reducer.ts'
+import sidebarReducer from './sidebar-reducer.ts'
+import usersReducer from './users-reducer.ts'
+import authReducer from './auth-reducer.ts'
 import { reducer as formReducer } from 'redux-form'
-import appReducer from "./app-reducer.ts";
+import appReducer from './app-reducer.ts'
 
 let rootReducer = combineReducers({
   profilePage: profileReducer,
@@ -19,13 +19,13 @@ let rootReducer = combineReducers({
 
 const store = configureStore({
   reducer: rootReducer
-});
+})
 
-type RootReducerType = typeof rootReducer;
-export type AppStateType = ReturnType<RootReducerType>;
+type RootReducerType = typeof rootReducer
+export type AppStateType = ReturnType<RootReducerType>
 
 
 // @ts-ignore
-window.store = store;
+window.store = store
 
-export default store;
+export default store
