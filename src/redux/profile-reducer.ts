@@ -1,5 +1,5 @@
 import { stopSubmit } from 'redux-form'
-import { profileAPI } from '../api/api'
+import { ResultCodes, profileAPI } from '../api/api.ts'
 import { reset } from 'redux-form'
 import { PhotosType, PostType, ProfileType } from '../types/types'
 import { ThunkAction } from '@reduxjs/toolkit'
@@ -135,7 +135,7 @@ export const updateUserStatus = (status: string): ThunkType => {
     try {
       let response = await profileAPI.updateUserStatus(status)
 
-      if (response.resultCode === 0) {
+      if (response.resultCode === ResultCodes.Success) {
         dispatch(setUserStatus(status))
       }
     } catch(error) {
@@ -149,7 +149,7 @@ export const savePhoto = (file: any): ThunkType => {
   return async (dispatch) => {
     let response = await profileAPI.savePhoto(file)
 
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCodes.Success) {
       dispatch(savePhotoSuccess(response.data.photos))      
     }
   }
@@ -160,7 +160,7 @@ export const saveProfile = (profile: ProfileType): ThunkType => {
     const userID = getState().auth.userID
     let response = await profileAPI.saveProfile(profile)
 
-    if (response.resultCode === 0) {
+    if (response.resultCode === ResultCodes.Success) {
       dispatch(getUserProfile(userID))
     } else {
       // @ts-ignore

@@ -1,5 +1,5 @@
 import { AppStateType } from './redux-store'
-import { followAPI, usersAPI } from '../api/api'
+import { FollowUnfollowResponseType, ResultCodes, followAPI, usersAPI } from '../api/api.ts'
 import { UserType } from '../types/types'
 import { updateObjectInArray } from '../utils/object-helpers'
 import { Dispatch } from 'redux'
@@ -156,11 +156,15 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkType =
   }
 }
 
-const _followUnfollowFlow = async (dispatch: DispatchType, userID: number, apiMethod: any, actionCreator: (userID: number) => SetFollowedActionType | SetUnfollowedActionType) => {
+const _followUnfollowFlow = async (dispatch: DispatchType,
+                                   userID: number,
+                                   apiMethod: (userID: number) => Promise<FollowUnfollowResponseType>,
+                                   actionCreator: (userID: number) => SetFollowedActionType | SetUnfollowedActionType) => {
+  
   dispatch(toggleFollowingProgress(true, userID))
     
   let data = await apiMethod(userID)
-  if (data.resultCode === 0) {
+  if (data.resultCode === ResultCodes.Success) {
     dispatch(actionCreator(userID))
   }
   dispatch(toggleFollowingProgress(false, userID))
