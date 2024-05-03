@@ -1,4 +1,3 @@
-import { getCaptchaURL } from './../redux/auth-reducer';
 import axios from 'axios'
 import { PhotosType, ProfileType, UserType } from '../types/types'
 

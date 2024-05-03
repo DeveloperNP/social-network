@@ -3,8 +3,8 @@ import s from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem.tsx'
 import MessageItem from './MessageItem/MessageItem.tsx'
 import { reduxForm } from 'redux-form'
-import { maxLengthCreator, required } from '../../utils/validators/validators.js'
-import { Textarea, createField } from '../common/FormsControls/FormsControls.js'
+import { maxLengthCreator, required } from '../../utils/validators/validators.ts'
+import { Textarea, createField } from '../common/FormsControls/FormsControls.tsx'
 import { InitialStateType } from '../../redux/dialogs-reducer.ts'
 
 const maxLength50 = maxLengthCreator(50)

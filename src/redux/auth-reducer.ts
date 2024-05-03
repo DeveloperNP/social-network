@@ -91,7 +91,7 @@ export const checkAuthUser = (): ThunkType => async (dispatch) => {
   }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: any): ThunkType => async (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
   let data = await authAPI.login(email, password, rememberMe, captcha)
 
   if (data.resultCode === ResultCodes.Success) {

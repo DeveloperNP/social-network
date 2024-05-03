@@ -10,7 +10,7 @@ import News from './components/News/News.tsx'
 import Music from './components/Music/Music.tsx'
 import Settings from './components/Settings/Settings.tsx'
 import UsersContainer from './components/Users/UsersContainer.tsx'
-import LoginPage from './components/Login/Login'
+import LoginPage from './components/Login/Login.tsx'
 import Preloader from './components/common/Preloader/Preloader.tsx'
 import { withSuspense } from './hoc/withSuspense'
 
