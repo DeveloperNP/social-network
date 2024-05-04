@@ -2,8 +2,7 @@ import React, { ChangeEvent, useState } from 'react'
 import s from './ProfileInfo.module.css'
 import Preloader from '../../common/Preloader/Preloader.tsx'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks.tsx'
-import ProfileDataForm from './ProfileDataForm'
-
+import ProfileDataForm, { ProfileDataFormValuesType } from './ProfileDataForm.tsx'
 
 import userPhoto from '../../../assets/images/userPhoto.jpg'
 import magnifyingGlass from '../../../assets/images/magnifying_glass.png'
@@ -120,7 +119,7 @@ const ProfileInfo = ({profile, isOwner, status, updateUserStatus, savePhoto, sav
     }
   }
 
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: ProfileDataFormValuesType) => {
     saveProfile(formData)
       .then(() => { setEditMode(false) })
   }
@@ -143,11 +142,8 @@ const ProfileInfo = ({profile, isOwner, status, updateUserStatus, savePhoto, sav
 
       {editMode
         ? <ProfileDataForm initialValues={profile}
-                           // @ts-ignore
                            profile={profile}                           
-                           onSubmit={onSubmit}
-                           status={status}
-                           updateUserStatus={updateUserStatus} />
+                           onSubmit={onSubmit} />
         : <ProfileData profile={profile}
                        isOwner={isOwner}
                        status={status}

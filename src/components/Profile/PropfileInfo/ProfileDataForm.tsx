@@ -1,24 +1,35 @@
 import React from 'react'
 import s from './ProfileInfo.module.css'
-import { reduxForm } from 'redux-form'
+import { InjectedFormProps, reduxForm } from 'redux-form'
 import { Input, createField } from '../../common/FormsControls/FormsControls.tsx'
 import { contacts } from './ProfileInfo.tsx'
+import { ProfileType } from '../../../types/types.ts'
 
-const ProfileDataForm = ({handleSubmit, profile, error}) => {
+export type ProfileDataFormValuesType = ProfileType
+
+type ProfileDataFormValuesTypeKeys = keyof ProfileDataFormValuesType
+
+type ProfileDataFormOwnProps = {
+  profile: ProfileType
+}
+
+type ProfileDataFormPropsType = InjectedFormProps<ProfileDataFormValuesType, ProfileDataFormOwnProps> & ProfileDataFormOwnProps
+
+const ProfileDataForm = ({handleSubmit, profile, error}: ProfileDataFormPropsType) => {
   return <form onSubmit={ handleSubmit } className={s.formBlock}>
     <div className={s.descriptionBlock}>
       <div className={s.fullName}>
-        {createField(Input, [], 'fullName', 'Full name') }
+        {createField<ProfileDataFormValuesTypeKeys>(Input, [], 'fullName', 'Full name') }
       </div>
       <div className={s.aboutMe}>
-        {createField(Input, [], 'aboutMe', 'About me') }
+        {createField<ProfileDataFormValuesTypeKeys>(Input, [], 'aboutMe', 'About me') }
       </div>
       <div className={s.lookingForAJobBlock}>
-        {createField(Input, [], 'lookingForAJob', null, {type: 'checkbox'})}
+        {createField<ProfileDataFormValuesTypeKeys>(Input, [], 'lookingForAJob', undefined, {type: 'checkbox'})}
         Looking for a job
       </div>
       <div className={s.lookingForAJobDescription}>
-        {createField(Input, [], 'lookingForAJobDescription', 'My skills') }
+        {createField<ProfileDataFormValuesTypeKeys>(Input, [], 'lookingForAJobDescription', 'My skills') }
       </div>
     </div>
 
@@ -45,7 +56,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
   </form>
 }
 
-const ProfileDataFormReduxForm = reduxForm({
+const ProfileDataFormReduxForm = reduxForm<ProfileDataFormValuesType, ProfileDataFormOwnProps>({
   form: 'edit-profile',
   enableReinitialize: true,
   destroyOnUnmount: false})(ProfileDataForm)
