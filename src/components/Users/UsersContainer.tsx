@@ -2,11 +2,13 @@ import React from 'react';
 import Users from './Users.tsx';
 import Preloader from '../common/Preloader/Preloader.tsx';
 import { connect } from 'react-redux';
-import { setCurrentPage, requestUsers, followUser, unfollowUser } from '../../redux/users-reducer.ts';
+import { actions, requestUsers, followUser, unfollowUser } from '../../redux/users-reducer.ts';
 import { compose } from 'redux';
 import { getCurrentPage, getFollowingInProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors.ts';
 import { UserType } from '../../types/types.ts';
 import { AppStateType } from '../../redux/redux-store.ts';
+
+const setCurrentPage = actions.setCurrentPage
 
 type MapStatePropsType = {
   users: Array<UserType>
