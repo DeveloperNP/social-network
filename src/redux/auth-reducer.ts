@@ -2,11 +2,7 @@ import { stopSubmit } from 'redux-form'
 import { ResultCodeForCaptcha, ResultCodes, authAPI, profileAPI, securityAPI } from '../api/api.ts'
 import { ProfileType } from '../types/types'
 import { ThunkAction } from '@reduxjs/toolkit'
-import { AppStateType } from './redux-store'
-
-const SET_USER_DATA = 'social-network/auth/SET_USER_DATA'
-const SET_AUTH_USER_PROFILE = 'social-network/auth/SET_AUTH_USER_PROFILE'
-const GET_CAPTCHA_URL_SUCCESS = 'social-network/auth/GET_CAPTCHA_URL_SUCCESS'
+import { AppStateType, InferActionsTypes } from './redux-store'
 
 
 
@@ -27,14 +23,14 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
   
   switch (action.type) {
    
-    case SET_USER_DATA:
-    case GET_CAPTCHA_URL_SUCCESS:
+    case 'social-network/auth/SET_USER_DATA':
+    case 'social-network/auth/GET_CAPTCHA_URL_SUCCESS':
       return {
         ...state,
         ...action.payload
       }
     
-    case SET_AUTH_USER_PROFILE:
+    case 'social-network/auth/SET_AUTH_USER_PROFILE':
       return {
         ...state,
         authUserProfile: action.authUserProfile
@@ -47,33 +43,15 @@ const authReducer = (state = initialState, action: ActionsTypes): InitialStateTy
 
 
 
-type ActionsTypes = SetAuthUserDataActionType | GetCaptchaURLSuccessActionType | SetAuthUserProfileActionType
+type ActionsTypes = InferActionsTypes<typeof actions>
 
-type SetAuthUserDataActionPayloadType = {
-  userID: number | null
-  email: string | null
-  login: string | null
-  isAuth: boolean
+export const actions = {
+  setAuthUserData: (userID: number | null, email: string | null, login: string | null, isAuth: boolean) => ({ type: 'social-network/auth/SET_USER_DATA', payload: {userID, email, login, isAuth} } as const),
+
+  getCaptchaURLSuccess: (captchaURL: string) => ({ type: 'social-network/auth/GET_CAPTCHA_URL_SUCCESS', payload: {captchaURL} } as const),
+  
+  setAuthUserProfile: (authUserProfile: ProfileType | null) => ({type: 'social-network/auth/SET_AUTH_USER_PROFILE', authUserProfile} as const)
 }
-type SetAuthUserDataActionType = {
-  type: typeof SET_USER_DATA
-  payload: SetAuthUserDataActionPayloadType
-}
-export const setAuthUserData = (userID: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataActionType => ({ type: SET_USER_DATA, payload: {userID, email, login, isAuth} })
-
-
-type GetCaptchaURLSuccessActionType = {
-  type: typeof GET_CAPTCHA_URL_SUCCESS
-  payload: { captchaURL: string }
-}
-export const getCaptchaURLSuccess = (captchaURL: string): GetCaptchaURLSuccessActionType => ({ type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaURL} })
-
-
-type SetAuthUserProfileActionType = {
-  type: typeof SET_AUTH_USER_PROFILE
-  authUserProfile: ProfileType | null
-}
-export const setAuthUserProfile = (authUserProfile: ProfileType | null): SetAuthUserProfileActionType => ({type: SET_AUTH_USER_PROFILE, authUserProfile})
 
 
 
@@ -84,10 +62,10 @@ export const checkAuthUser = (): ThunkType => async (dispatch) => {
 
   if (data.resultCode === ResultCodes.Success) {
     let { id, email, login } = data.data
-    dispatch(setAuthUserData(id, email, login, true))
+    dispatch(actions.setAuthUserData(id, email, login, true))
 
     let profileData = await profileAPI.getUserProfile(id)
-    dispatch(setAuthUserProfile(profileData))
+    dispatch(actions.setAuthUserProfile(profileData))
   }
 }
 
@@ -110,15 +88,15 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
 export const getCaptchaURL = (): ThunkType => async (dispatch) => {
   const response = await securityAPI.getCaptchaURL()
   const captchaURL = response.url
-  dispatch(getCaptchaURLSuccess(captchaURL))
+  dispatch(actions.getCaptchaURLSuccess(captchaURL))
 }
 
 export const logout = (): ThunkType => async (dispatch) => {
   let data = await authAPI.logout()
 
   if (data.resultCode === ResultCodes.Success) {
-    dispatch(setAuthUserData(null, null, null, false))
-    dispatch(setAuthUserProfile(null))
+    dispatch(actions.setAuthUserData(null, null, null, false))
+    dispatch(actions.setAuthUserProfile(null))
   }
 }
 

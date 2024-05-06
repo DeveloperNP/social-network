@@ -1,9 +1,7 @@
 import { reset } from 'redux-form'
 import { DialogType, MessageType } from '../types/types'
 import { ThunkAction } from '@reduxjs/toolkit'
-import { AppStateType } from './redux-store'
-
-const ADD_MESSAGE = 'social-network/dialogs/ADD_MESSAGE'
+import { AppStateType, InferActionsTypes } from './redux-store'
 
 
 
@@ -32,10 +30,10 @@ export type InitialStateType = typeof initialState
 
 
 
-const dialogsReducer = (state = initialState, action: AddMessageActionType): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
 
   switch (action.type) {
-    case ADD_MESSAGE:
+    case 'social-network/dialogs/ADD_MESSAGE':
       let newMessage = {
         id: 7,
         message: action.newMessageText
@@ -52,17 +50,17 @@ const dialogsReducer = (state = initialState, action: AddMessageActionType): Ini
 
 
 
-type AddMessageActionType = {
-  type: typeof ADD_MESSAGE
-  newMessageText: string
+type ActionsTypes = InferActionsTypes<typeof actions>
+
+export const actions = {
+  addMessage: (newMessageText: string) => ({ type: 'social-network/dialogs/ADD_MESSAGE', newMessageText } as const)
 }
-export const addMessage = (newMessageText: string): AddMessageActionType => ({ type: ADD_MESSAGE, newMessageText })
 
 
 
-export const addMessageClearForm = (newMessageText: string): ThunkAction<void, AppStateType, unknown, AddMessageActionType> => {
+export const addMessageClearForm = (newMessageText: string): ThunkAction<void, AppStateType, unknown, ActionsTypes> => {
   return (dispatch) => {
-    dispatch(addMessage(newMessageText))
+    dispatch(actions.addMessage(newMessageText))
     // @ts-ignore
     dispatch(reset('dialogAddMessageForm'))
   }

@@ -1,4 +1,4 @@
-import profileReducer, { addPost, deletePost } from "./profile-reducer";
+import profileReducer, { actions } from './profile-reducer'
 
 let state = {
   posts: [
@@ -9,48 +9,48 @@ let state = {
     { id: 5, message: 'How are you?', likesCount: 58 },
     { id: 6, message: 'Hello, World! This is my first post ^.^', likesCount: 104 }
   ]
-};
+}
 
 test('new post should be added', () => {
   // 1. test data
-  let action = addPost('test message');
+  let action = actions.addPost('test message')
 
   // 2. some action
-  let newState = profileReducer(state, action);
+  let newState = profileReducer(state, action)
 
   // 3. expectation
-  expect(newState.posts.length).toBe(7);
-});
+  expect(newState.posts.length).toBe(7)
+})
 
 test('new post message should be correct', () => {
   // 1. test data
-  let action = addPost('test message');
+  let action = actions.addPost('test message')
 
   // 2. some action
-  let newState = profileReducer(state, action);
+  let newState = profileReducer(state, action)
 
   // 3. expectation
-  expect(newState.posts[6].message).toBe('test message');
-});
+  expect(newState.posts[6].message).toBe('test message')
+})
 
 test('post should be deleted', () => {
   // 1. test data
-  let action = deletePost(1);
+  let action = actions.deletePost(1)
 
   // 2. some action
-  let newState = profileReducer(state, action);
+  let newState = profileReducer(state, action)
 
   // 3. expectation
-  expect(newState.posts.length).toBe(5);
-});
+  expect(newState.posts.length).toBe(5)
+})
 
 test(`post shouldn't be deleted (incorrect id to delete)`, () => {
   // 1. test data
-  let action = deletePost(1000);
+  let action = actions.deletePost(1000)
 
   // 2. some action
-  let newState = profileReducer(state, action);
+  let newState = profileReducer(state, action)
 
   // 3. expectation
-  expect(newState.posts.length).toBe(6);
-});
+  expect(newState.posts.length).toBe(6)
+})

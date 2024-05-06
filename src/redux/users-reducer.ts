@@ -18,6 +18,8 @@ let initialState = {
 
 export type InitialStateType = typeof initialState
 
+
+
 const usersReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
   
   switch (action.type) {
@@ -77,11 +79,17 @@ type ActionsTypes = InferActionsTypes<typeof actions>
 
 export const actions = {
   setFollowed: (userID: number) => ({ type: 'social-network/users/FOLLOW', userID } as const),
+
   setUnfollowed: (userID: number) => ({ type: 'social-network/users/UNFOLLOW', userID } as const),
+
   setUsers: (users: Array<UserType>) => ({ type: 'social-network/users/SET_USERS', users } as const),
+
   setCurrentPage: (currentPage: number) => ({ type: 'social-network/users/SET_CURRENT_PAGE', currentPage } as const),
+
   setTotalUsersCount: (totalUsersCount: number) => ({ type: 'social-network/users/SET_TOTAL_USERS_COUNT', totalUsersCount } as const),
+
   toggleIsFetching: (isFetching: boolean) => ({ type: 'social-network/users/TOGGLE_IS_FETCHING', isFetching } as const),
+
   toggleFollowingProgress: (isFetching: boolean, userID: number) => ({ type: 'social-network/users/TOGGLE_FOLLOWING_PROGRESS', isFetching, userID } as const)
 }
 
