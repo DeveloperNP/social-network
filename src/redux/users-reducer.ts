@@ -1,5 +1,7 @@
 import { AppStateType, InferActionsTypes } from './redux-store'
-import { FollowUnfollowResponseType, ResultCodes, followAPI, usersAPI } from '../api/api.ts'
+import { ResultCodes } from '../api/api.ts'
+import { FollowUnfollowResponseType, followAPI } from '../api/follow-api.ts'
+import { usersAPI } from '../api/users-api.ts'
 import { UserType } from '../types/types'
 import { updateObjectInArray } from '../utils/object-helpers'
 import { Dispatch } from 'redux'

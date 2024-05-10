@@ -1,5 +1,6 @@
 import { stopSubmit } from 'redux-form'
-import { ResultCodes, profileAPI } from '../api/api.ts'
+import { ResultCodes } from '../api/api.ts'
+import { profileAPI } from '../api/profile-api.ts'
 import { reset } from 'redux-form'
 import { PhotosType, PostType, ProfileType } from '../types/types'
 import { ThunkAction } from '@reduxjs/toolkit'
