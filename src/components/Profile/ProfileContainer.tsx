@@ -20,7 +20,7 @@ type MapDispatchPropsType = {
   getUserProfile: (userID: number) => void
   getUserStatus: (userID: number) => void
   updateUserStatus: (status: string) => void
-  savePhoto: (file: any) => void
+  savePhoto: (file: File) => void
   saveProfile: (profile: ProfileType) => any
 }
 

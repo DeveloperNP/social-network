@@ -1,6 +1,5 @@
-import { ThunkAction } from '@reduxjs/toolkit'
 import { checkAuthUser } from './auth-reducer.ts'
-import { AppStateType, InferActionsTypes } from './redux-store.ts'
+import { BaseThunkType, InferActionsTypes } from './redux-store.ts'
 
 
 
@@ -37,7 +36,7 @@ export const actions = {
 
 
 
-export const initializeApp = (): ThunkAction<void, AppStateType, unknown, ActionsTypes> => (dispatch) => {
+export const initializeApp = (): BaseThunkType<ActionsTypes, void> => (dispatch) => {
   let promise = dispatch(checkAuthUser())
 
   promise.then( () => {

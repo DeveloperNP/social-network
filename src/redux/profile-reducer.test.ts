@@ -8,7 +8,9 @@ let state = {
     { id: 4, message: 'The weather is fine today', likesCount: 35 },
     { id: 5, message: 'How are you?', likesCount: 58 },
     { id: 6, message: 'Hello, World! This is my first post ^.^', likesCount: 104 }
-  ]
+  ],
+  profile: null,
+  status: ''
 }
 
 test('new post should be added', () => {

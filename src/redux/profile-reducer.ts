@@ -3,8 +3,7 @@ import { ResultCodes } from '../api/api.ts'
 import { profileAPI } from '../api/profile-api.ts'
 import { reset } from 'redux-form'
 import { PhotosType, PostType, ProfileType } from '../types/types'
-import { ThunkAction } from '@reduxjs/toolkit'
-import { AppStateType, InferActionsTypes } from './redux-store'
+import { BaseThunkType, InferActionsTypes } from './redux-store'
 
 
 
@@ -87,7 +86,9 @@ export const actions = {
 
 
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
+type ThunkType = BaseThunkType<ActionsTypes>
+type SaveProfileThunkType = BaseThunkType<ActionsTypes | ReturnType<typeof stopSubmit>>
+type AddPostClearFormThunkType = BaseThunkType<ActionsTypes | ReturnType<typeof reset>, void>
 
 export const getUserProfile = (userID: number | null): ThunkType => {
   return async (dispatch) => {
@@ -118,7 +119,7 @@ export const updateUserStatus = (status: string): ThunkType => {
   }
 }
 
-export const savePhoto = (file: any): ThunkType => {
+export const savePhoto = (file: File): ThunkType => {
   return async (dispatch) => {
     let response = await profileAPI.savePhoto(file)
 
@@ -128,7 +129,7 @@ export const savePhoto = (file: any): ThunkType => {
   }
 }
 
-export const saveProfile = (profile: ProfileType): ThunkType => {
+export const saveProfile = (profile: ProfileType): SaveProfileThunkType => {
   return async (dispatch, getState) => {
     const userID = getState().auth.userID
     let response = await profileAPI.saveProfile(profile)
@@ -136,17 +137,15 @@ export const saveProfile = (profile: ProfileType): ThunkType => {
     if (response.resultCode === ResultCodes.Success) {
       dispatch(getUserProfile(userID))
     } else {
-      // @ts-ignore
       dispatch(stopSubmit('edit-profile', {_error: response.messages[0]}))
       return Promise.reject(response.messages[0])
     }
   }
 }
 
-export const addPostClearForm = (newPostText: string): ThunkAction<void, AppStateType, unknown, ActionsTypes> => {
+export const addPostClearForm = (newPostText: string): AddPostClearFormThunkType => {
   return (dispatch) => {
     dispatch(actions.addPost(newPostText))
-    // @ts-ignore
     dispatch(reset('profileAddPostForm'))
   }
 }

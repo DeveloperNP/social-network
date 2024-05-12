@@ -1,7 +1,6 @@
 import { reset } from 'redux-form'
 import { DialogType, MessageType } from '../types/types'
-import { ThunkAction } from '@reduxjs/toolkit'
-import { AppStateType, InferActionsTypes } from './redux-store'
+import { BaseThunkType, InferActionsTypes } from './redux-store'
 
 
 
@@ -58,10 +57,11 @@ export const actions = {
 
 
 
-export const addMessageClearForm = (newMessageText: string): ThunkAction<void, AppStateType, unknown, ActionsTypes> => {
+type AddMessageClearFormThunkType = BaseThunkType<ActionsTypes | ReturnType<typeof reset>, void>
+
+export const addMessageClearForm = (newMessageText: string): AddMessageClearFormThunkType => {
   return (dispatch) => {
     dispatch(actions.addMessage(newMessageText))
-    // @ts-ignore
     dispatch(reset('dialogAddMessageForm'))
   }
 }

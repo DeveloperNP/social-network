@@ -4,8 +4,7 @@ import { authAPI } from '../api/auth-api.ts'
 import { profileAPI } from '../api/profile-api.ts'
 import { securityAPI } from '../api/security-api.ts'
 import { ProfileType } from '../types/types'
-import { ThunkAction } from '@reduxjs/toolkit'
-import { AppStateType, InferActionsTypes } from './redux-store'
+import { BaseThunkType, InferActionsTypes } from './redux-store'
 
 
 
@@ -58,7 +57,8 @@ export const actions = {
 
 
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
+type ThunkType = BaseThunkType<ActionsTypes>
+type LoginThunkType = BaseThunkType<ActionsTypes | ReturnType<typeof stopSubmit>>
 
 export const checkAuthUser = (): ThunkType => async (dispatch) => {
   let data = await authAPI.checkAuthUser()
@@ -72,7 +72,7 @@ export const checkAuthUser = (): ThunkType => async (dispatch) => {
   }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkType => async (dispatch) => {
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string): LoginThunkType => async (dispatch) => {
   let data = await authAPI.login(email, password, rememberMe, captcha)
 
   if (data.resultCode === ResultCodes.Success) {
@@ -83,7 +83,6 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     }
 
     let message = data.messages.length > 0 ? data.messages[0] : 'Unknown Error'
-    // @ts-ignore
     dispatch(stopSubmit('login', { _error: message }))
   }
 }

@@ -1,11 +1,10 @@
-import { AppStateType, InferActionsTypes } from './redux-store'
-import { ResultCodes } from '../api/api.ts'
-import { FollowUnfollowResponseType, followAPI } from '../api/follow-api.ts'
+import { AppStateType, BaseThunkType, InferActionsTypes } from './redux-store'
+import { BaseResponseType, ResultCodes } from '../api/api.ts'
+import { followAPI } from '../api/follow-api.ts'
 import { usersAPI } from '../api/users-api.ts'
 import { UserType } from '../types/types'
 import { updateObjectInArray } from '../utils/object-helpers'
 import { Dispatch } from 'redux'
-import { ThunkAction } from '@reduxjs/toolkit'
 
 
 
@@ -101,7 +100,7 @@ export const actions = {
 type DispatchType = Dispatch<ActionsTypes>
 type GetStateType = () => AppStateType
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
+type ThunkType = BaseThunkType<ActionsTypes>
 
 // First method to type thunk
 //export const requestUsers = (currentPage: number, pageSize: number) => {
@@ -120,7 +119,7 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkType =
 
 const _followUnfollowFlow = async (dispatch: DispatchType,
                                    userID: number,
-                                   apiMethod: (userID: number) => Promise<FollowUnfollowResponseType>,
+                                   apiMethod: (userID: number) => Promise<BaseResponseType>,
                                    actionCreator: (userID: number) => ActionsTypes) => {
   
   dispatch(actions.toggleFollowingProgress(true, userID))
